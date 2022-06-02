@@ -1,5 +1,5 @@
 # inv_kinematics
-# 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
+
 
 
 This repository explains and shows the development of the thrid Lab, which main objective is to learn about inverse kinematics and trajectories.
@@ -35,6 +35,8 @@ Pincher = rtb.DHRobot(
 After measuring the position of the targets, the inverse kinematics are calculated due to this poses, those are developed with the SE3 objects in the form of position * orientation. Afterwards, rtb.jtraj is used to make the joint trajectory; this method receives 3 parameters: initial joint configuration, final joint configuration and the number of steps between those configurations. By this way, the intermediate steps are calculated, in order to improve the movement between poses.
 
 This process is iterative, this base code is implemented in the other positions to pick and place the objects type 1 and type 2. 
+
+The ikine_LM is a numeric method in order to find out the inverse kinematics from a initial configuration condition, in this case, there is not a initial condition, but in the further codes that replies this one, the parameter is an input of q0=. This method uses a Levenberg-Marquadt optimization.
 ```python
 T0 = SE3( 4, -4, 11 ) * SE3.OA([0, 1, 0], [0, 0, -1]) 
 sol0 = Pincher.ikine_LM(T0)  
@@ -54,29 +56,22 @@ for i in range(len(qt)):
 ```
 In this way the trajectories and positions have been plotted and obtained, so, the next step is just going into the drivers, in this step the code is recycled from px_robot repository using the roslauncher of px_controllers, also the Jointcommand methods are useful.
 
-The next method transforms the joint configurations gotten previously  into driver's commands from 0 to 1023 bits of position; additionaly, it is important to taking into account the boundaries of the motors.
-## First Joint
+The next method transforms the joint configurations gotten previously  into driver's commands from 0 to 1023 bits of position; additionaly, it is important to taking into account the boundaries of the motors. The code below shows how the joint configurations are read by the drivers.
+```python
+def drive(array):
+    jointCommand('',3,'Goal_Position', round(-array[2]/300 * 1023 + 512),0.2)
+    print(round(array[2]/300 * 1023 + 512))
+    print(type(round(array[2]/300 * 1023 + 512)))
+    time.sleep(0.5)
+    jointCommand('',4,'Goal_Position', round(-array[3]/1023 * 300 + 512),0.2)
+    print(round(array[3]/300 * 1023  + 512))
+    time.sleep(0.5)
+    jointCommand('',2,'Goal_Position', round(array[1]/1023 * 300 + 512),0.2)
+    print(round(array[1]/300 * 1023  + 512))
+    time.sleep(0.5)
+    jointCommand('',1,'Goal_Position', round(array[0]/300 * 1023  + 512),0.2)
+```s
 
-[![diagram-20220601.png](https://i.postimg.cc/4NbvD7Bv/diagram-20220601.png)](https://postimg.cc/9r0qTM3z)
-Starting with the inverse kinematics analysis, for the first joint we can observe in the diagyram of the robot that:
-$$\theta_1 = atan2 (y_T, x_T)$$
-where $x_t$ and $y_t$ are the tool coordinates.
-
-## kinematic decoupling
-For the analysis it is necessary to reduce the number of variables to facilitate the procedure, that is why we resort to the technique of kinematic decoupling. To perform this procedure, we decouple the wrist of the last joint with a displacement of the value of $L4$ which refers to the size of the fourth link.    
-
-The position of W is described by the following expression:
-$$w=\begin{bmatrix}
-x_T\\
-y_T\\
-z_T
-
-\end{bmatrix} - L_4 \begin{bmatrix}
-a_T\\
-a_T\\
-a_T
-\end{bmatrix}$$
-
-Donde $a_x$ $a_y$ y  $a_z$ son componentes del vector approach que pueden ser obtenidos de la matris de rotacion de la herramienta
-## 2R mechanism
-## Second and Third Joint
+https://youtu.be/l49hyLJMKvs
+## Acknowledgments:
+Co-authored-by: Alejandro Triana <alejotriana1@users.noreply.github.com> 
