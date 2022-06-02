@@ -56,7 +56,6 @@ for i in range(len(qt)):
 ```
 In this way the trajectories and positions have been plotted and obtained, so, the next step is just going into the drivers, in this step the code is recycled from px_robot repository using the roslauncher of px_controllers, also the Jointcommand methods are useful.
 
-<<<<<<< HEAD
 The next method transforms the joint configurations gotten previously  into driver's commands from 0 to 1023 bits of position; additionaly, it is important to taking into account the boundaries of the motors. The code below shows how the joint configurations are read by the drivers.
 ```python
 def drive(array):
@@ -71,7 +70,7 @@ def drive(array):
     print(round(array[1]/300 * 1023  + 512))
     time.sleep(0.5)
     jointCommand('',1,'Goal_Position', round(array[0]/300 * 1023  + 512),0.2)
-```s
+```
 
 https://youtu.be/l49hyLJMKvs
 ## Acknowledgments:
