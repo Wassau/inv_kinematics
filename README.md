@@ -97,7 +97,10 @@ We can see that it is a method that simplifies the inverse kinematic process and
 ## Analysis
 
 How many possible solutions are there for the inverse kinematics of the Phantom X manipulator?
+
 We can observe when performing the inverse kinematics of the robot that we have to obtain two solutions for the given requirements, these solutions are known as the elbow up solution and the elbow down solution.
+
+Dexterous workspace: Consists of the set of points that the manipulator can reach with an arbitrary orientation of its end-effector. manipulator can reach with an arbitrary orientation of its end-effector.
 
 
 
