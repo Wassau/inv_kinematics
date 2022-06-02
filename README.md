@@ -118,12 +118,13 @@ We can see that it is a method that simplifies the inverse kinematic process and
 
 ## Analysis
 
+Due to the 4 DOF in the phantom X, 3 of them belongs to position, wich is the remaning DOF in terms of orientation?
+
+The orientation DOF is pitch, because of the 4 joint who rotate the orientation in the gripper, changing the orientation in the pitch fixed angle.
+
 How many possible solutions are there for the inverse kinematics of the Phantom X manipulator?
 
 We can observe when performing the inverse kinematics of the robot that we have to obtain two solutions for the given requirements, these solutions are known as the elbow up solution and the elbow down solution.
 
 Dexterous workspace: Consists of the set of points that the manipulator can reach with an arbitrary orientation of its end-effector. manipulator can reach with an arbitrary orientation of its end-effector.
 
-
-
->>>>>>> 05f7dc0e71926e65de1cc6bfdfa08c57708ba9b4
