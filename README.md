@@ -56,9 +56,10 @@ In this way the trajectories and positions have been plotted and obtained, so, t
 
 The next method transforms the joint configurations gotten previously  into driver's commands from 0 to 1023 bits of position; additionaly, it is important to taking into account the boundaries of the motors.
 ## First Joint
+Starting with the inverse kinematics analysis, for the first joint we can observe in the diagyram of the robot that:
 
 [![diagram-20220601.png](https://i.postimg.cc/4NbvD7Bv/diagram-20220601.png)](https://postimg.cc/9r0qTM3z)
-Starting with the inverse kinematics analysis, for the first joint we can observe in the diagyram of the robot that:
+
 $$\theta_1 = atan2 (y_T, x_T)$$
 where $x_t$ and $y_t$ are the tool coordinates.
 
@@ -66,17 +67,18 @@ where $x_t$ and $y_t$ are the tool coordinates.
 For the analysis it is necessary to reduce the number of variables to facilitate the procedure, that is why we resort to the technique of kinematic decoupling. To perform this procedure, we decouple the wrist of the last joint with a displacement of the value of $L4$ which refers to the size of the fourth link.    
 
 The position of W is described by the following expression:
-$w=\begin{bmatrix}
+
+$$w=\begin{bmatrix}
 x_T\\
 y_T\\
 z_T
-
 \end{bmatrix} - L_4 \begin{bmatrix}
 a_T\\
 a_T\\
 a_T
-\end{bmatrix}$
+\end{bmatrix}$$
 
 Donde $a_x$ $a_y$ y  $a_z$ son componentes del vector approach que pueden ser obtenidos de la matris de rotacion de la herramienta
 ## 2R mechanism
+[![diagram-20220601-3.png](https://i.postimg.cc/rpJp14Cm/diagram-20220601-3.png)](https://postimg.cc/Z9WZZCQt)
 ## Second and Third Joint
