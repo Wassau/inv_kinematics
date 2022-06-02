@@ -66,7 +66,7 @@ where $x_t$ and $y_t$ are the tool coordinates.
 For the analysis it is necessary to reduce the number of variables to facilitate the procedure, that is why we resort to the technique of kinematic decoupling. To perform this procedure, we decouple the wrist of the last joint with a displacement of the value of $L4$ which refers to the size of the fourth link.    
 
 The position of W is described by the following expression:
-$$w=\begin{bmatrix}
+$w=\begin{bmatrix}
 x_T\\
 y_T\\
 z_T
@@ -75,7 +75,7 @@ z_T
 a_T\\
 a_T\\
 a_T
-\end{bmatrix}$$
+\end{bmatrix}$
 
 Donde $a_x$ $a_y$ y  $a_z$ son componentes del vector approach que pueden ser obtenidos de la matris de rotacion de la herramienta
 ## 2R mechanism
