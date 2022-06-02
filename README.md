@@ -78,7 +78,18 @@ a_T\\
 a_T
 \end{bmatrix}$$
 
-Donde $a_x$ $a_y$ y  $a_z$ son componentes del vector approach que pueden ser obtenidos de la matris de rotacion de la herramienta
-## 2R mechanism
+Where $a_x$ $a_y$ and $a_z$ are components of the approach vector that can be obtained from the rotation matrix of the tool.
+## 2R mechanism, Second and Third Joint
+To determine the second and third joint we can use a 2r mechanism, where we took from the second joint to the tool, obtaining a simpler problem to solve using the Pythagorean theorem, trigonometry and the cosine law.
+
+As we can see in the following figure, we can appreciate the triangles formed between joints in the robot, obtaining the value of $//theta_2$ and $/theta_3$ corresponding to joints 2 and 3.
+
+
 [![diagram-20220601-3.png](https://i.postimg.cc/rpJp14Cm/diagram-20220601-3.png)](https://postimg.cc/Z9WZZCQt)
-## Second and Third Joint
+
+$$\theta_2= atan2\frac{h}{r} - atan2 (\frac{L_3 \sin(\theta_3)}{L_2 + L_3 \cos(\theta_3)})$$
+
+$$ acos(\frac{r²+h²-L_2²-L_3²}{2\cdot L_2 \cdot L_3})$$
+
+
+
