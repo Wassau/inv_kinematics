@@ -56,6 +56,7 @@ for i in range(len(qt)):
 ```
 In this way the trajectories and positions have been plotted and obtained, so, the next step is just going into the drivers, in this step the code is recycled from px_robot repository using the roslauncher of px_controllers, also the Jointcommand methods are useful.
 
+<<<<<<< HEAD
 The next method transforms the joint configurations gotten previously  into driver's commands from 0 to 1023 bits of position; additionaly, it is important to taking into account the boundaries of the motors. The code below shows how the joint configurations are read by the drivers.
 ```python
 def drive(array):
@@ -75,3 +76,52 @@ def drive(array):
 https://youtu.be/l49hyLJMKvs
 ## Acknowledgments:
 Co-authored-by: Alejandro Triana <alejotriana1@users.noreply.github.com> 
+=======
+The next method transforms the joint configurations gotten previously  into driver's commands from 0 to 1023 bits of position; additionaly, it is important to taking into account the boundaries of the motors.
+## Geometric approach to inverse kinematics
+## First Joint
+Starting with the inverse kinematics analysis, for the first joint we can observe in the diagyram of the robot that:
+
+[![diagram-20220601.png](https://i.postimg.cc/4NbvD7Bv/diagram-20220601.png)](https://postimg.cc/9r0qTM3z)
+
+$$\theta_1 = atan2 (y_T, x_T)$$
+where $x_t$ and $y_t$ are the tool coordinates.
+
+## kinematic decoupling
+For the analysis it is necessary to reduce the number of variables to facilitate the procedure, that is why we resort to the technique of kinematic decoupling. To perform this procedure, we decouple the wrist of the last joint with a displacement of the value of $L4$ which refers to the size of the fourth link.    
+
+The position of W is described by the following expression:
+
+$$w=\begin{bmatrix}
+x_T\\
+y_T\\
+z_T
+\end{bmatrix} - L_4 \begin{bmatrix}
+a_T\\
+a_T\\
+a_T
+\end{bmatrix}$$
+
+Where $a_x$ $a_y$ and $a_z$ are components of the approach vector that can be obtained from the rotation matrix of the tool.
+## 2R mechanism, Second and Third Joint
+To determine the second and third joint we can use a 2r mechanism, where we took from the second joint to the tool, obtaining a simpler problem to solve using the Pythagorean theorem, trigonometry and the cosine law.
+
+As we can see in the following figure, we can appreciate the triangles formed between joints in the robot, obtaining the value of $//theta_2$ and $/theta_3$ corresponding to joints 2 and 3.
+
+
+[![diagram-20220601-3.png](https://i.postimg.cc/rpJp14Cm/diagram-20220601-3.png)](https://postimg.cc/Z9WZZCQt)
+
+$$\theta_2= atan2\frac{h}{r} - atan2 (\frac{L_3 \sin(\theta_3)}{L_2 + L_3 \cos(\theta_3)})$$
+
+$$ acos(\frac{r²+h²-L_2²-L_3²}{2\cdot L_2 \cdot L_3})$$
+
+We can see that it is a method that simplifies the inverse kinematic process and responds very well to the processes applied.
+
+## Analysis
+
+How many possible solutions are there for the inverse kinematics of the Phantom X manipulator?
+We can observe when performing the inverse kinematics of the robot that we have to obtain two solutions for the given requirements, these solutions are known as the elbow up solution and the elbow down solution.
+
+
+
+>>>>>>> 05f7dc0e71926e65de1cc6bfdfa08c57708ba9b4
