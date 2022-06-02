@@ -55,6 +55,7 @@ for i in range(len(qt)):
 In this way the trajectories and positions have been plotted and obtained, so, the next step is just going into the drivers, in this step the code is recycled from px_robot repository using the roslauncher of px_controllers, also the Jointcommand methods are useful.
 
 The next method transforms the joint configurations gotten previously  into driver's commands from 0 to 1023 bits of position; additionaly, it is important to taking into account the boundaries of the motors.
+## Geometric approach to inverse kinematics
 ## First Joint
 Starting with the inverse kinematics analysis, for the first joint we can observe in the diagyram of the robot that:
 
@@ -90,6 +91,13 @@ As we can see in the following figure, we can appreciate the triangles formed be
 $$\theta_2= atan2\frac{h}{r} - atan2 (\frac{L_3 \sin(\theta_3)}{L_2 + L_3 \cos(\theta_3)})$$
 
 $$ acos(\frac{r²+h²-L_2²-L_3²}{2\cdot L_2 \cdot L_3})$$
+
+We can see that it is a method that simplifies the inverse kinematic process and responds very well to the processes applied.
+
+## Analysis
+
+How many possible solutions are there for the inverse kinematics of the Phantom X manipulator?
+We can observe when performing the inverse kinematics of the robot that we have to obtain two solutions for the given requirements, these solutions are known as the elbow up solution and the elbow down solution.
 
 
 
