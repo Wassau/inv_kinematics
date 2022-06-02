@@ -7,6 +7,8 @@ This repository explains and shows the development of the thrid Lab, which main 
 Firstly, it is needed to remember the phantom X model, in which the inverse kinematics are developed.
 
 The set of tools used in this aplication are the following libraries, specially spatialmath.base and RTB are the main tools to develop the Phantom model, the inverse kinematics, aditionally, position and rotation descriptions.
+### Acknowledgments:
+Co-authored-by: Alejandro Triana <alejotriana1@users.noreply.github.com> 
 ## Procedure
 
 ```python
@@ -73,9 +75,7 @@ def drive(array):
 ```
 
 https://youtu.be/l49hyLJMKvs
-## Acknowledgments:
-Co-authored-by: Alejandro Triana <alejotriana1@users.noreply.github.com> 
-=======
+
 The next method transforms the joint configurations gotten previously  into driver's commands from 0 to 1023 bits of position; additionaly, it is important to taking into account the boundaries of the motors.
 ## Geometric approach to inverse kinematics
 ## First Joint
@@ -125,5 +125,3 @@ We can observe when performing the inverse kinematics of the robot that we have 
 Dexterous workspace: Consists of the set of points that the manipulator can reach with an arbitrary orientation of its end-effector. manipulator can reach with an arbitrary orientation of its end-effector.
 
 
-
->>>>>>> 05f7dc0e71926e65de1cc6bfdfa08c57708ba9b4
