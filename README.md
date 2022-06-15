@@ -38,7 +38,8 @@ After measuring the position of the targets, the inverse kinematics are calculat
 
 This process is iterative, this base code is implemented in the other positions to pick and place the objects type 1 and type 2. 
 
-The ikine_LM is a numeric method in order to find out the inverse kinematics from a initial configuration condition, in this case, there is not a initial condition, but in the further codes that replies this one, the parameter is an input of q0=. This method uses a Levenberg-Marquadt optimization.
+The ikine_LM is a numeric method that find out the inverse kinematics from a initial configuration condition, in this case, there is not a initial condition, but in the further poses the initial condition for the numerical method is presented as a second parameter. This method uses a Levenberg-Marquadt optimization. It consist in a optimization of the trajectories looking for the minimal local steps along the trajectory between initial condition and final value.
+
 ```python
 T0 = SE3( 4, -4, 11 ) * SE3.OA([0, 1, 0], [0, 0, -1]) 
 sol0 = Pincher.ikine_LM(T0)  
@@ -73,8 +74,12 @@ def drive(array):
     time.sleep(0.5)
     jointCommand('',1,'Goal_Position', round(array[0]/300 * 1023  + 512),0.2)
 ```
+Simulation:
 
 https://youtu.be/l49hyLJMKvs
+
+Final Video:
+https://youtu.be/X9OQSzycGHs
 
 The next method transforms the joint configurations gotten previously  into driver's commands from 0 to 1023 bits of position; additionaly, it is important to taking into account the boundaries of the motors.
 ## Geometric approach to inverse kinematics
@@ -116,6 +121,8 @@ $$ acos(\frac{r²+h²-L_2²-L_3²}{2\cdot L_2 \cdot L_3})$$
 
 We can see that it is a method that simplifies the inverse kinematic process and responds very well to the processes applied.
 
+This inverse kinematic model and the model given in matlab was implemented in a python script called PInvKin.py. The funtion in there also was used to solve some inverse kinematics in the pick and place.
+
 ## Analysis
 
 Due to the 4 DOF in the phantom X, 3 of them belongs to position, wich is the remaning DOF in terms of orientation?
@@ -127,3 +134,15 @@ How many possible solutions are there for the inverse kinematics of the Phantom 
 We can observe when performing the inverse kinematics of the robot that we have to obtain two solutions for the given requirements, these solutions are known as the elbow up solution and the elbow down solution.
 
 Dexterous workspace: Consists of the set of points that the manipulator can reach with an arbitrary orientation of its end-effector. manipulator can reach with an arbitrary orientation of its end-effector.
+
+## Conclusion.
+
+* When testing the Phantom X, some problems were observed, the first is that its fixation system is deficient and causes the structure to sway and swing to much, it makes the robots jerk increase; for that reason 2 main parameters supports to reduce this sway, the delay time between movements and the number of  steps along a trajectory. 
+
+Increasing the amount of steps makes the trajectory wide slow and the movement is also quite rude. In the other hand the  accuracy is increased.
+
+The second parameter is the Time between each articulation arrangement, making the time ejecution longer will have a smooth movement. meanwhile, shorter delay time will make ejecution time shorter and the movement is going to have some jerk along each step.
+
+
+
+
